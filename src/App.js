@@ -16,8 +16,12 @@ let [like,setLike]=useState(0)
         <h4>{title[0]} <span onClick={()=>setLike(like+1)}>👍</span>{like} </h4>
         <p>2월 17일 발행</p>
       </div>
+      <button onClick={()=>{
+        let copy=[...title]
+        copy[0]= '여자 코트 변경'
+        setTitle(copy)
+      }}> edit </button>
     </div>
-    
   );
 }
 
