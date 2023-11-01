@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+
+/* eslint-disable */
+
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+  let [title,setTitle]=useState(['남자 코드 추천','강남 우동 맛집','파이썬 독학'])
+let [like,setLike]=useState(0)
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="black-nav">
+        <div>Blog</div>
+      </div>
+      <div className="list">
+        <h4>{title[0]} <span onClick={()=>setLike(like+1)}>👍</span>{like} </h4>
+        <p>2월 17일 발행</p>
+      </div>
     </div>
+    
   );
 }
 
