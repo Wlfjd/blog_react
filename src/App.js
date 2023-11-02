@@ -9,7 +9,7 @@ function App() {
   let [like,setLike]=useState(0)
   //let [modal,setModal]= useState(false) //일단 닫힌 상태로 구현
   let [value,setValue]=useState(null)
-
+  let [good,setGood]= useState(new Array(title.length).fill(0))
 
   return (
   <div className="App">
@@ -18,16 +18,23 @@ function App() {
     </div>
     {title.map((data,i)=>{
       return(
-        <>
+        <>   
         <div className="list" key={i}>
-          <h4 
+          <h4 className="inner">
+          <div 
             onClick={()=>{
             if(value==null) setValue(i)
             else if(value===i) setValue(null)
-
-           }}> {data} 
+           }}> {data}
+          </div>
+          <div>
            <span onClick={()=>{
-            setLike(like+1)}}>👍</span> {like} </h4>
+            let copy=[...good]
+            copy[i]++
+            setGood(copy)
+           }}>👍</span> {good[i]} 
+           </div>
+          </h4>
           <p>2월 17일 발행</p>
         </div>
         {value===i && 
