@@ -9,6 +9,10 @@ function App() {
   let [value,setValue]=useState(null)
   let [like,setLike]= useState(new Array(title.length).fill(0))
   let [inputValue, setInputValue]=useState('')
+  const currentDate = new Date(); // 현재 날짜 및 시간을 나타내는 Date 객체 생성
+
+  const month = currentDate.getMonth() + 1; // 현재 월 (0부터 시작하므로 +1)
+  const day = currentDate.getDate(); // 현재 일
 
   return (
   <div className="App">
@@ -29,7 +33,7 @@ function App() {
             setLike(copy)
            }}>👍</span> {like[i]} 
           </h4>
-          <p>2월 17일 발행</p>
+          <p>{month}월 {day}일 발행</p>
           <button onClick={()=>{
             let copy=[...title]
             copy.splice(i,1)
@@ -40,28 +44,33 @@ function App() {
           value={value}
           title={title} 
           color={'lightblue'} 
-          onChange={setTitle}/> 
+          onChange={setTitle}
+          month={month}
+          day={day}/> 
           )}
         </div>
       ))}
-
-    <input value={inputValue} onChange={(e)=>setInputValue(e.target.value)}></input>
-    <button onClick={()=> {
-      let copy=[...title]
-      copy.push(inputValue)
-      setTitle(copy)
-      setInputValue('')
-      setLike([...like,0])
-    }}>글발행</button>
+      <div className='input- container'>
+      <input value={inputValue} onChange={(e)=>setInputValue(e.target.value)} className='input'></input>
+          <button className="button"
+                  onClick={()=> {
+                    let copy=[...title]
+                    copy.push(inputValue)
+                    setTitle(copy)
+                    setInputValue('')
+                    setLike([...like,0])
+                  }}>글발행</button>
+      </div>
+    
   </div>
   );
 }
 
-function Modal({value, color,onChange,title}){
+function Modal({value, color,onChange,title,month,day}){
   return(
       <div className="modal" style={{background: color}}>
         <h4>{title[value]}</h4>
-        <p>날짜</p>
+        <p>{month}월 {day}일 발행</p>
         <p>상세내용</p>
         <button onClick={()=>{
           let copy=[...title]
