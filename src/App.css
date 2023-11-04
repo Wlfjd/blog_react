@@ -22,7 +22,6 @@ div {
   text-align : left;
 }
 
-.inner{
-  display:flex;
-  gap:20px;
+.App{
+  text-align: center;
 }
